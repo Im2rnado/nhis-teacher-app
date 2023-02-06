@@ -1,9 +1,16 @@
-//database urls
-//Please add your admin panel url here and make sure you do not add '/' at the end of the url
 import 'package:eschool_teacher/utils/labelKeys.dart';
 
-const String baseUrl = "https://nhis-admin.com";
+final String schoolName = "New Horizon";
 
+final String schoolTagLine = "New Horizon International School";
+
+final String androidAppPackageName = "com.bedro.nhis";
+final String iosAppPackageName = "com.bedro.nhis";
+
+//database urls
+//Please add your admin panel url here and make sure you do not add '/' at the end of the url
+const String baseUrl =
+    "https://nhis-admin.com"; //https://testschool.wrteam.in
 const String databaseUrl = "$baseUrl/api/";
 
 //error message display duration

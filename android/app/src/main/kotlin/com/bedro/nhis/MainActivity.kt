@@ -1,4 +1,4 @@
-package com.wrteam.eschool.teacher
+package com.bedro.nhis
 
 import io.flutter.embedding.android.FlutterActivity
 
