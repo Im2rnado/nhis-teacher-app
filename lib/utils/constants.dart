@@ -4,8 +4,8 @@ final String schoolName = "New Horizon";
 
 final String schoolTagLine = "New Horizon International School";
 
-final String androidAppPackageName = "com.bedro.nhis";
-final String iosAppPackageName = "com.bedro.nhis";
+final String androidAppPackageName = "com.bedro.nhis.teacher";
+final String iosAppPackageName = "com.bedro.nhis.teacher";
 
 //database urls
 //Please add your admin panel url here and make sure you do not add '/' at the end of the url

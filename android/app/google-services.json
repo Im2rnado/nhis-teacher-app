@@ -29,6 +29,49 @@
             {
               "client_id": "292156225676-dmcgcpumfgl1f1qe9e8l2rolsfhk27s2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "292156225676-1jse2g5j1pk3a55otbrniuj9k9142aae.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bedro.nhis"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292156225676:android:6774669c47cd219bc6a3a9",
+        "android_client_info": {
+          "package_name": "com.bedro.nhis.teacher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292156225676-dmcgcpumfgl1f1qe9e8l2rolsfhk27s2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwkHcpe2-qvjMZh0-OyxcwYqmYGg5QGJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292156225676-dmcgcpumfgl1f1qe9e8l2rolsfhk27s2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "292156225676-1jse2g5j1pk3a55otbrniuj9k9142aae.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bedro.nhis"
+              }
             }
           ]
         }

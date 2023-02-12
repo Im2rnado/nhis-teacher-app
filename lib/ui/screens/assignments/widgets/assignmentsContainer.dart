@@ -151,7 +151,7 @@ class AssignmentsContainer extends StatelessWidget {
                                 height: 10.0,
                               ),
                               Text(
-                                  "dueDate: ${DateFormat('yyyy-MM-dd , kk:mm').format(assignment.dueDate)}",
+                                  "${UiUtils.getTranslatedLabel(context, dueDateKey)}: ${DateFormat('yyyy-MM-dd , kk:mm').format(assignment.dueDate)}",
                                   style: TextStyle(
                                       color: Theme.of(context)
                                           .colorScheme

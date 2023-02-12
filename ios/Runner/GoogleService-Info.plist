@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>292156225676-1jse2g5j1pk3a55otbrniuj9k9142aae.apps.googleusercontent.com</string>
+	<string>292156225676-h6125tmjd3o7cnkjjrfevlvb5v2cp3fm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.292156225676-1jse2g5j1pk3a55otbrniuj9k9142aae</string>
+	<string>com.googleusercontent.apps.292156225676-h6125tmjd3o7cnkjjrfevlvb5v2cp3fm</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDajPyP6t_vvUv1CYBa4l8DJcyOzz2KMMk</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.bedro.nhis</string>
+	<string>com.bedro.nhis.teacher</string>
 	<key>PROJECT_ID</key>
 	<string>nhis-app1</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:292156225676:ios:ae277edcf51bc80ac6a3a9</string>
+	<string>1:292156225676:ios:a8da17dc25605c6fc6a3a9</string>
 </dict>
 </plist>
