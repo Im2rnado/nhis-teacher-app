@@ -2,6 +2,7 @@ import 'package:eschool_teacher/app/routes.dart';
 import 'package:eschool_teacher/cubits/behaviorCubit.dart';
 import 'package:eschool_teacher/data/models/behavior.dart';
 import 'package:eschool_teacher/data/repositories/behaviorRepository.dart';
+import 'package:eschool_teacher/ui/widgets/customRefreshIndicator.dart';
 import 'package:eschool_teacher/ui/widgets/customShimmerContainer.dart';
 import 'package:eschool_teacher/ui/widgets/errorContainer.dart';
 import 'package:eschool_teacher/ui/widgets/noDataContainer.dart';
@@ -11,7 +12,7 @@ import 'package:eschool_teacher/utils/uiUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BehaviorContainer extends StatelessWidget {
+class BehaviorContainer extends StatefulWidget {
   final int? studentId;
   final String? studentName;
   final String teacherName;
@@ -20,50 +21,93 @@ class BehaviorContainer extends StatelessWidget {
       {Key? key, this.studentId, this.studentName, required this.teacherName})
       : super(key: key);
 
-  Widget _buildBehaviorDetailsShimmerContainer(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Container(
-        child: LayoutBuilder(builder: (context, boxConstraints) {
-          return Column(
+  @override
+  State<BehaviorContainer> createState() => _BehaviorContainerState();
+}
+
+class _BehaviorContainerState extends State<BehaviorContainer> {
+  void fetchBehavior() {
+    context.read<BehaviorCubit>().fetchBehavior(
+          studentId: widget.studentId,
+          teacherName: context.read<BehaviorContainer>().teacherName,
+        );
+  }
+
+  Widget _buildBehaviorShimmerLoadingContainer() {
+    return Container(
+        margin: EdgeInsets.only(
+          bottom: 20,
+        ),
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.symmetric(
+            horizontal: UiUtils.screenContentHorizontalPaddingPercentage *
+                MediaQuery.of(context).size.width),
+        child: ShimmerLoadingContainer(
+          child: LayoutBuilder(builder: (context, boxConstraints) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ShimmerLoadingContainer(
+                    child: CustomShimmerContainer(
+                  margin: EdgeInsetsDirectional.only(
+                      end: boxConstraints.maxWidth * (0.7)),
+                )),
+                SizedBox(
+                  height: 5,
+                ),
+                ShimmerLoadingContainer(
+                    child: CustomShimmerContainer(
+                  margin: EdgeInsetsDirectional.only(
+                      end: boxConstraints.maxWidth * (0.5)),
+                )),
+                SizedBox(
+                  height: 15,
+                ),
+                ShimmerLoadingContainer(
+                    child: CustomShimmerContainer(
+                  margin: EdgeInsetsDirectional.only(
+                      end: boxConstraints.maxWidth * (0.7)),
+                )),
+                SizedBox(
+                  height: 5,
+                ),
+                ShimmerLoadingContainer(
+                    child: CustomShimmerContainer(
+                  margin: EdgeInsetsDirectional.only(
+                      end: boxConstraints.maxWidth * (0.5)),
+                )),
+              ],
+            );
+          }),
+        ));
+  }
+
+  Widget _buildBehaviorLoading() {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(
+              top: UiUtils.appBarMediumtHeightPercentage *
+                  MediaQuery.of(context).size.height,
+              right: 20.0,
+              left: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ShimmerLoadingContainer(
-                  child: CustomShimmerContainer(
-                margin: EdgeInsetsDirectional.only(
-                    end: boxConstraints.maxWidth * (0.7)),
-              )),
-              SizedBox(
-                height: 5,
-              ),
-              ShimmerLoadingContainer(
-                  child: CustomShimmerContainer(
-                margin: EdgeInsetsDirectional.only(
-                    end: boxConstraints.maxWidth * (0.5)),
-              )),
-              SizedBox(
-                height: 15,
-              ),
-              ShimmerLoadingContainer(
-                  child: CustomShimmerContainer(
-                margin: EdgeInsetsDirectional.only(
-                    end: boxConstraints.maxWidth * (0.7)),
-              )),
-              SizedBox(
-                height: 5,
-              ),
-              ShimmerLoadingContainer(
-                  child: CustomShimmerContainer(
-                margin: EdgeInsetsDirectional.only(
-                    end: boxConstraints.maxWidth * (0.5)),
-              )),
-            ],
-          );
-        }),
-        padding: EdgeInsets.symmetric(vertical: 15.0),
-        width: MediaQuery.of(context).size.width * (0.85),
+            children: List.generate(UiUtils.defaultShimmerLoadingContentCount,
+                (index) => _buildBehaviorShimmerLoadingContainer()),
+          ),
+        ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero).then((value) => fetchBehavior());
   }
 
   Widget _buildBehaviorDetailsContainer(
@@ -132,36 +176,39 @@ class BehaviorContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BehaviorCubit, BehaviorState>(
-      builder: (context, state) {
-        if (state is BehaviorFetchSuccess) {
-          return state.behavior.isEmpty
-              ? NoDataContainer(titleKey: noBehaviorKey)
-              : Column(
-                  children: state.behavior
-                      .map((behavior) => _buildBehaviorDetailsContainer(
-                          behavior: behavior, context: context))
-                      .toList(),
+    return Align(
+        alignment: Alignment.topCenter,
+        child: CustomRefreshIndicator(
+          onRefreshCallback: () {
+            fetchBehavior();
+          },
+          displacment: UiUtils.getScrollViewTopPadding(
+              context: context,
+              appBarHeightPercentage: UiUtils.appBarSmallerHeightPercentage),
+          child: BlocBuilder<BehaviorCubit, BehaviorState>(
+            builder: (context, state) {
+              if (state is BehaviorFetchFailure) {
+                return Center(
+                  child: ErrorContainer(
+                    errorMessageCode: state.errorMessage,
+                    onTapRetry: () {
+                      fetchBehavior();
+                    },
+                  ),
                 );
-        }
-        if (state is BehaviorFetchFailure) {
-          return Center(
-            child: ErrorContainer(
-              errorMessageCode: state.errorMessage,
-              onTapRetry: () {
-                context.read<BehaviorCubit>().fetchBehavior(
-                    studentId: studentId, teacherName: teacherName);
-              },
-            ),
-          );
-        }
-        return Column(
-          children: List.generate(
-                  UiUtils.defaultShimmerLoadingContentCount, (index) => index)
-              .map((e) => _buildBehaviorDetailsShimmerContainer(context))
-              .toList(),
-        );
-      },
-    );
+              } else if (state is BehaviorFetchSuccess) {
+                return state.behavior.isEmpty
+                    ? NoDataContainer(titleKey: noBehaviorKey)
+                    : Column(
+                        children: state.behavior
+                            .map((behavior) => _buildBehaviorDetailsContainer(
+                                behavior: behavior, context: context))
+                            .toList(),
+                      );
+              }
+              return _buildBehaviorLoading();
+            },
+          ),
+        ));
   }
 }
