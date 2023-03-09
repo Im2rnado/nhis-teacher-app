@@ -35,7 +35,7 @@ import 'package:eschool_teacher/ui/screens/addOrEditBehavior.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../ui/screens/result/resultScreen.dart';
+import 'package:eschool_teacher/ui/screens/result/resultScreen.dart';
 
 class Routes {
   static const String splash = "splash";

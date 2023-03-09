@@ -26,7 +26,7 @@ class BehaviorCubit extends Cubit<BehaviorState> {
   BehaviorCubit(this._behaviorRepository) : super(BehaviorInitial());
 
   void fetchBehavior(
-      {required int? studentId, required String teacherName}) async {
+      {required int? studentId, required String? teacherName}) async {
     emit(BehaviorFetchInProgress());
     try {
       emit(BehaviorFetchSuccess(await _behaviorRepository.getBehavior(

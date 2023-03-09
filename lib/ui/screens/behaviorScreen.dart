@@ -1,10 +1,8 @@
-import 'package:eschool_teacher/app/routes.dart';
 import 'package:eschool_teacher/cubits/behaviorCubit.dart';
 import 'package:eschool_teacher/cubits/createBehaviorCubit.dart';
 import 'package:eschool_teacher/data/repositories/behaviorRepository.dart';
 import 'package:eschool_teacher/ui/screens/addOrEditBehavior.dart';
 import 'package:eschool_teacher/ui/widgets/customAppbar.dart';
-import 'package:eschool_teacher/ui/widgets/customFloatingActionButton.dart';
 import 'package:eschool_teacher/ui/widgets/behaviorContainer.dart';
 import 'package:eschool_teacher/utils/labelKeys.dart';
 import 'package:eschool_teacher/utils/uiUtils.dart';
@@ -47,10 +45,9 @@ class BehaviorScreen extends StatelessWidget {
       body: Stack(
         children: [
           BehaviorContainer(
-            key: context.read<BehaviorScreen>().key,
-            studentId: context.read<BehaviorScreen>().studentId,
-            studentName: context.read<BehaviorScreen>().studentName,
-            teacherName: context.read<BehaviorScreen>().teacherName,
+            studentId: studentId,
+            studentName: studentName,
+            teacherName: teacherName,
           ),
           Align(
             alignment: Alignment.topCenter,

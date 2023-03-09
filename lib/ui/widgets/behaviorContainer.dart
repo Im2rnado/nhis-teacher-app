@@ -8,6 +8,7 @@ import 'package:eschool_teacher/ui/widgets/errorContainer.dart';
 import 'package:eschool_teacher/ui/widgets/noDataContainer.dart';
 import 'package:eschool_teacher/ui/widgets/shimmerLoadingContainer.dart';
 import 'package:eschool_teacher/utils/labelKeys.dart';
+
 import 'package:eschool_teacher/utils/uiUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,10 +16,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class BehaviorContainer extends StatefulWidget {
   final int? studentId;
   final String? studentName;
-  final String teacherName;
+  final String? teacherName;
 
   const BehaviorContainer(
-      {Key? key, this.studentId, this.studentName, required this.teacherName})
+      {Key? key, this.studentId, this.studentName, this.teacherName})
       : super(key: key);
 
   @override
@@ -35,51 +36,39 @@ class _BehaviorContainerState extends State<BehaviorContainer> {
 
   Widget _buildBehaviorShimmerLoadingContainer() {
     return Container(
-        margin: EdgeInsets.only(
-          bottom: 20,
-        ),
-        width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(
-            horizontal: UiUtils.screenContentHorizontalPaddingPercentage *
-                MediaQuery.of(context).size.width),
-        child: ShimmerLoadingContainer(
-          child: LayoutBuilder(builder: (context, boxConstraints) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ShimmerLoadingContainer(
-                    child: CustomShimmerContainer(
-                  margin: EdgeInsetsDirectional.only(
-                      end: boxConstraints.maxWidth * (0.7)),
-                )),
-                SizedBox(
-                  height: 5,
-                ),
-                ShimmerLoadingContainer(
-                    child: CustomShimmerContainer(
-                  margin: EdgeInsetsDirectional.only(
-                      end: boxConstraints.maxWidth * (0.5)),
-                )),
-                SizedBox(
-                  height: 15,
-                ),
-                ShimmerLoadingContainer(
-                    child: CustomShimmerContainer(
-                  margin: EdgeInsetsDirectional.only(
-                      end: boxConstraints.maxWidth * (0.7)),
-                )),
-                SizedBox(
-                  height: 5,
-                ),
-                ShimmerLoadingContainer(
-                    child: CustomShimmerContainer(
-                  margin: EdgeInsetsDirectional.only(
-                      end: boxConstraints.maxWidth * (0.5)),
-                )),
-              ],
-            );
-          }),
-        ));
+      margin: EdgeInsets.only(
+        bottom: 20,
+      ),
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.symmetric(
+          horizontal: UiUtils.screenContentHorizontalPaddingPercentage *
+              MediaQuery.of(context).size.width),
+      child: ShimmerLoadingContainer(
+        child: LayoutBuilder(builder: (context, boxConstraints) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ShimmerLoadingContainer(
+                  child: CustomShimmerContainer(
+                height: 9,
+                width: boxConstraints.maxWidth * (0.3),
+              )),
+              SizedBox(
+                height: boxConstraints.maxWidth * (0.02),
+              ),
+              ShimmerLoadingContainer(
+                  child: CustomShimmerContainer(
+                height: 10,
+                width: boxConstraints.maxWidth * (0.8),
+              )),
+              SizedBox(
+                height: boxConstraints.maxWidth * (0.1),
+              ),
+            ],
+          );
+        }),
+      ),
+    );
   }
 
   Widget _buildBehaviorLoading() {

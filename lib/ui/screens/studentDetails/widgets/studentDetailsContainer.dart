@@ -3,14 +3,16 @@ import 'package:eschool_teacher/app/routes.dart';
 import 'package:eschool_teacher/cubits/studentMoreDetailsCubit.dart';
 import 'package:eschool_teacher/data/models/guardianDetails.dart';
 import 'package:eschool_teacher/data/models/student.dart';
+import 'package:eschool_teacher/data/models/teacher.dart';
 import 'package:eschool_teacher/ui/widgets/customCircularProgressIndicator.dart';
 import 'package:eschool_teacher/ui/widgets/errorContainer.dart';
+import 'package:eschool_teacher/utils/hiveBoxKeys.dart';
 import 'package:eschool_teacher/utils/labelKeys.dart';
 import 'package:eschool_teacher/utils/uiUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../cubits/authCubit.dart';
+import 'package:eschool_teacher/cubits/authCubit.dart';
 
 class StudentDetailsContainer extends StatefulWidget {
   final Student student;
@@ -362,8 +364,7 @@ class _StudentDetailsContainerState extends State<StudentDetailsContainer> {
     );
   }
 
-  _buildBehaviorContainer() {
-    final teacher = context.read<AuthCubit>().getTeacherDetails();
+  _buildBehaviorContainer(Teacher teacher) {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, Routes.behavior, arguments: {
@@ -462,7 +463,8 @@ class _StudentDetailsContainerState extends State<StudentDetailsContainer> {
             ),
 
             _buildViewResultContainer(),
-            _buildBehaviorContainer(),
+            _buildBehaviorContainer(
+                context.read<AuthCubit>().getTeacherDetails()),
           ],
         ),
         padding: EdgeInsets.only(

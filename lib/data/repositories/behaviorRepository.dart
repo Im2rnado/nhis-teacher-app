@@ -21,7 +21,7 @@ class BehaviorRepository {
   }
 
   Future<List<Behavior>> getBehavior(
-      {required int? studentId, required String teacherName}) async {
+      {required int? studentId, required String? teacherName}) async {
     try {
       final result = await Api.get(
           url: Api.getBehavior,
