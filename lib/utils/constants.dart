@@ -10,7 +10,7 @@ final String iosAppPackageName = "com.bedro.nhis.teacher";
 //database urls
 //Please add your admin panel url here and make sure you do not add '/' at the end of the url
 const String baseUrl =
-    "https://nhis-admin.com"; //https://testschool.wrteam.in
+    "https://nhis-admin.com";
 const String databaseUrl = "$baseUrl/api/";
 
 //error message display duration

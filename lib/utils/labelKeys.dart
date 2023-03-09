@@ -146,6 +146,7 @@ const String attendanceKey = "attendance";
 const String forgotPasswordKey = "forgotPassword";
 const String termsAndConditionAgreementKey = "termAndConditionAgreement";
 const String privacyPolicyKey = "privacyPolicy";
+const String schoolPolicyKey = "schoolPolicy";
 const String termsAndConditionKey = "termsAndCondition";
 
 const String pleaseEnterEmailKey = "pleaseEnterEmail";
@@ -304,3 +305,13 @@ const String marksMoreThanTotalMarksKey = "marksMoreThanTotalMarks";
 const String pleaseEnterSomeDataKey = "pleaseEnterSomeData";
 const String noDataFoundKey = "noDataFound";
 const String pleaseEnterAllMarksKey = "pleaseEnterAllMarks";
+
+const String behaviorKey = "behavior";
+const String behaviorTypeKey = "behaviorType";
+const String behaviorDescriptionKey = "behaviorDescription";
+const String noBehaviorKey = "noBehavior";
+const String pleaseEnterBehaviorNameKey = "pleaseEnterBehaviorName";
+const String pleaseEnterBehaviorDescriptionKey =
+    "pleaseEnterBehaviorDescription";
+const String behaviorAddedKey = "behaviorAdded";
+const String addBehaviorKey = "addBehavior";

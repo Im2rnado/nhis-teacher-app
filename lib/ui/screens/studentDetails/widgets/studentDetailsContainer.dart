@@ -10,6 +10,8 @@ import 'package:eschool_teacher/utils/uiUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../cubits/authCubit.dart';
+
 class StudentDetailsContainer extends StatefulWidget {
   final Student student;
 
@@ -332,10 +334,11 @@ class _StudentDetailsContainerState extends State<StudentDetailsContainer> {
 
   _buildViewResultContainer() {
     return GestureDetector(
-      onTap: (){
-        Navigator.pushNamed(context, Routes.resultList,arguments: {
-          'studentId':widget.student.id,
-          'studentName' :'${widget.student.firstName} ${widget.student.lastName}'
+      onTap: () {
+        Navigator.pushNamed(context, Routes.resultList, arguments: {
+          'studentId': widget.student.id,
+          'studentName':
+              '${widget.student.firstName} ${widget.student.lastName}'
         });
       },
       child: Container(
@@ -359,6 +362,38 @@ class _StudentDetailsContainerState extends State<StudentDetailsContainer> {
     );
   }
 
+  _buildBehaviorContainer() {
+    final teacher = context.read<AuthCubit>().getTeacherDetails();
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, Routes.behavior, arguments: {
+          'studentId': widget.student.id,
+          'studentName':
+              '${widget.student.firstName} ${widget.student.lastName}',
+          'teacherName': teacher.getFullName()
+        });
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: 20.0),
+        padding: EdgeInsets.all(2.5),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              width: 2,
+              color: Theme.of(context).colorScheme.primary,
+            )),
+        alignment: AlignmentDirectional.center,
+        width: MediaQuery.of(context).size.width * (0.85),
+        height: MediaQuery.of(context).size.width * (0.15),
+        child: Text(UiUtils.getTranslatedLabel(context, behaviorKey),
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.w600,
+                fontSize: 14.0)),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -374,7 +409,7 @@ class _StudentDetailsContainerState extends State<StudentDetailsContainer> {
                 if (state is StudentMoreDetailsFetchSuccess) {
                   return Column(
                     children: [
-                      _buildGuardianDetailsContainer(
+                      /* _buildGuardianDetailsContainer(
                           guardianDetails: state.fatherDetails,
                           guardianRole:
                               UiUtils.getTranslatedLabel(context, fatherKey)),
@@ -387,7 +422,7 @@ class _StudentDetailsContainerState extends State<StudentDetailsContainer> {
                               guardianRole: UiUtils.getTranslatedLabel(
                                   context, guardianKey),
                               guardianDetails: state.guardianDetails)
-                          : SizedBox(),
+                          : SizedBox(), */
                       _buildAttendanceSummaryContainer(
                           todayAttendance: state.todayAttendance,
                           totalAbsent: state.totalAbsent,
@@ -427,6 +462,7 @@ class _StudentDetailsContainerState extends State<StudentDetailsContainer> {
             ),
 
             _buildViewResultContainer(),
+            _buildBehaviorContainer(),
           ],
         ),
         padding: EdgeInsets.only(

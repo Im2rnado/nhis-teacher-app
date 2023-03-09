@@ -104,6 +104,7 @@
   "termAndConditionAgreement": "By logging in, you agree to our",
   "termsAndCondition": "Terms & Conditions",
   "privacyPolicy": "Privacy Policy",
+  "schoolPolicy": "School Policy",
   "pleaseEnterEmail": "Please enter email",
   "passwordUpdateLinkSent": "Password update link sent to",
   "canNotSendResetPasswordRequest": "Cannot reset password. Try again later",
@@ -220,7 +221,7 @@
   "attendanceNotViewEdit": "Today is a holiday. Cannot view/take attendance",
   "attendanceSubmittedSuccessfully": "Attendance submitted successfully",
   "todayAttendance": "Today's attendance",
-  "holidays": "Holidays",
+  "holidays": "Calendar",
   "noAnnouncements": "No announcements",
   "noTopics": "No topics",
   "noLectures": "No lectures",
@@ -241,5 +242,13 @@
   "marksMoreThanTotalMarks" : "Marks Should not be more than Total Marks",
   "pleaseEnterSomeData" : "Please Enter Data",
   "noDataFound": "No Data Found..",
-  "pleaseEnterAllMarks" : "Please Enter All Marks"
+  "pleaseEnterAllMarks" : "Please Enter All Marks",
+  "behavior": "Behavior",
+  "behaviorType": "Behavior Type",
+  "behaviorDescription": "Behavior Description",
+  "noBehavior": "No Behavior Found",
+  "pleaseEnterBehaviorName": "Please enter behavior type (ex: Bad Attitude)",
+  "pleaseEnterBehaviorDescription": "Please enter behavior description",
+  "behaviorAdded": "Behavior added successfully!",
+  "addBehavior": "Add Behavior"
 }

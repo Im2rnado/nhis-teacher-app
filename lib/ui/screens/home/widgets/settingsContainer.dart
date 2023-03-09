@@ -144,6 +144,12 @@ class SettingsContainer extends StatelessWidget {
             },
             context: context),
         _buildMoreSettingDetailsTile(
+            title: UiUtils.getTranslatedLabel(context, schoolPolicyKey),
+            onTap: () {
+              Navigator.of(context).pushNamed(Routes.schoolPolicy);
+            },
+            context: context),
+        _buildMoreSettingDetailsTile(
             title: UiUtils.getTranslatedLabel(context, termsAndConditionKey),
             onTap: () {
               Navigator.of(context).pushNamed(Routes.termsAndCondition);

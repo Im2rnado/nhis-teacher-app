@@ -18,6 +18,7 @@ import 'package:eschool_teacher/ui/screens/home/homeScreen.dart';
 import 'package:eschool_teacher/ui/screens/lessonsScreen.dart';
 import 'package:eschool_teacher/ui/screens/login/loginScreen.dart';
 import 'package:eschool_teacher/ui/screens/privacyPolicyScreen.dart';
+import 'package:eschool_teacher/ui/screens/schoolPolicyScreen.dart';
 import 'package:eschool_teacher/ui/screens/result/addResultForAllStudentsScreen.dart';
 
 import 'package:eschool_teacher/ui/screens/searchStudentScreen.dart';
@@ -27,6 +28,10 @@ import 'package:eschool_teacher/ui/screens/subjectScreen.dart';
 import 'package:eschool_teacher/ui/screens/termsAndConditionScreen.dart';
 import 'package:eschool_teacher/ui/screens/topcisByLessonScreen.dart';
 import 'package:eschool_teacher/ui/screens/topicsScreen.dart';
+
+import 'package:eschool_teacher/ui/screens/behaviorScreen.dart';
+import 'package:eschool_teacher/ui/screens/addOrEditBehavior.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +60,6 @@ class Routes {
 
   static const String studentDetails = "/studentDetails";
 
-
   static const String resultList = "/resultList";
 
   static const String addResult = "/addResult";
@@ -74,7 +78,10 @@ class Routes {
   static const String termsAndCondition = "/termsAndCondition";
 
   static const String aboutUs = "/aboutUs";
+
   static const String privacyPolicy = "/privacyPolicy";
+
+  static const String schoolPolicy = "/schoolPolicy";
 
   static const String contactUs = "/contactUs";
 
@@ -84,6 +91,9 @@ class Routes {
 
   static const String exams = "/exam";
   static const String examTimeTable = "/examTimeTable";
+
+  static const String behavior = "/behavior";
+  static const String addOrEditBehavior = "/addOrEditBehavior";
 
   static String currentRoute = splash;
 
@@ -143,11 +153,10 @@ class Routes {
         {
           return AddResultScreen.route(routeSettings);
         }
-        case addResultForAllStudents:
+      case addResultForAllStudents:
         {
           return AddResultForAllStudents.route(routeSettings);
         }
-
       case announcements:
         {
           return AnnouncementsScreen.route(routeSettings);
@@ -176,7 +185,10 @@ class Routes {
         {
           return PrivacyPolicyScreen.route(routeSettings);
         }
-
+      case schoolPolicy:
+        {
+          return SchoolPolicyScreen.route(routeSettings);
+        }
       case contactUs:
         {
           return ContactUsScreen.route(routeSettings);
@@ -201,10 +213,17 @@ class Routes {
         {
           return ExamScreen.route(routeSettings);
         }
-
-        case examTimeTable:
+      case examTimeTable:
         {
           return ExamTimeTableScreen.route(routeSettings);
+        }
+      case behavior:
+        {
+          return BehaviorScreen.route(routeSettings);
+        }
+      case addOrEditBehavior:
+        {
+          return AddOrEditBehaviorScreen.route(routeSettings);
         }
 
       default:

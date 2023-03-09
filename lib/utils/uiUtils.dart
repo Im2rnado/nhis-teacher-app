@@ -16,7 +16,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UiUtils {
-  //This extra padding will add to MediaQuery.of(context).padding.top in orderto give same top padding in every screen
+  //This extra padding will add to MediaQuery.of(context).padding.top in order to give same top padding in every screen
 
   static double screenContentTopPadding = 15.0;
   static double screenContentHorizontalPadding = 25.0;
@@ -344,13 +344,13 @@ class UiUtils {
   }
 
   static final List<String> weekDays = [
+    "Sun",
     "Mon",
     "Tue",
     "Wed",
     "Thu",
     "Fri",
-    "Sat",
-    "Sun"
+    "Sat"
   ];
 
   static String formatTime(String time) {

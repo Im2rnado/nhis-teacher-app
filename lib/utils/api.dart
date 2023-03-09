@@ -20,7 +20,7 @@ class ApiException implements Exception {
 class Api {
   static Map<String, dynamic> headers() {
     final String jwtToken = Hive.box(authBoxKey).get(jwtTokenKey) ?? "";
-print('token is $jwtToken');
+print('Token is $jwtToken');
     return {"Authorization": "Bearer $jwtToken"};
   }
 
@@ -76,6 +76,9 @@ print('token is $jwtToken');
 
   static String updateReviewAssignmet =
       "${databaseUrl}teacher/update-assignment-submission";
+
+  static String getBehavior = "${databaseUrl}teacher/get-student-behavior";
+  static String createBehavior = "${databaseUrl}teacher/create-student-behavior";
 
   static String settings = "${databaseUrl}settings";
 
