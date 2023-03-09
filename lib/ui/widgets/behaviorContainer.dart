@@ -1,4 +1,3 @@
-import 'package:eschool_teacher/app/routes.dart';
 import 'package:eschool_teacher/cubits/behaviorCubit.dart';
 import 'package:eschool_teacher/data/models/behavior.dart';
 import 'package:eschool_teacher/data/repositories/behaviorRepository.dart';

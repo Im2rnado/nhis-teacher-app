@@ -1,9 +1,10 @@
+import 'package:eschool_teacher/app/routes.dart';
 import 'package:eschool_teacher/cubits/behaviorCubit.dart';
 import 'package:eschool_teacher/cubits/createBehaviorCubit.dart';
 import 'package:eschool_teacher/data/repositories/behaviorRepository.dart';
-import 'package:eschool_teacher/ui/screens/addOrEditBehavior.dart';
 import 'package:eschool_teacher/ui/widgets/customAppbar.dart';
 import 'package:eschool_teacher/ui/widgets/behaviorContainer.dart';
+import 'package:eschool_teacher/ui/widgets/customFloatingActionButton.dart';
 import 'package:eschool_teacher/utils/labelKeys.dart';
 import 'package:eschool_teacher/utils/uiUtils.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,6 +43,12 @@ class BehaviorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionAddButton(onTap: () {
+        Navigator.of(context).pushNamed(Routes.addOrEditBehavior, arguments: {
+          studentId: studentId,
+          teacherName: teacherName,
+        });
+      }),
       body: Stack(
         children: [
           BehaviorContainer(
