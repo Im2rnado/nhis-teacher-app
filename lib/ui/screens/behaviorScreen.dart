@@ -11,7 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BehaviorScreen extends StatefulWidget {
+class BehaviorScreen extends StatelessWidget {
   final int? studentId;
   final String? studentName;
   final String teacherName;
@@ -37,72 +37,32 @@ class BehaviorScreen extends StatefulWidget {
   }
 
   @override
-  State<BehaviorScreen> createState() => _BehaviorScreenState();
-}
-
-class _BehaviorScreenState extends State<BehaviorScreen> {
-  @override
-  void initState() {
-    context.read<BehaviorCubit>().fetchBehavior(
-          studentId: context.read<BehaviorScreen>().studentId,
-          teacherName: context.read<BehaviorScreen>().teacherName,
-        );
-    super.initState();
-  }
-
-  void fetchBehavior() {
-    context.read<BehaviorCubit>().fetchBehavior(
-          studentId: context.read<BehaviorScreen>().studentId,
-          teacherName: context.read<BehaviorScreen>().teacherName,
-        );
-  }
-
-  Widget _buildAppbar() {
-    return Align(
-      alignment: Alignment.topCenter,
-      child:
-          CustomAppBar(title: UiUtils.getTranslatedLabel(context, behaviorKey)),
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionAddButton(onTap: () {
-          Navigator.of(context).pushNamed(Routes.addOrEditBehavior);
-        }),
-        body: Stack(
-          children: [
-            CustomRefreshIndicator(
-              displacment: UiUtils.getScrollViewTopPadding(
-                  context: context,
-                  appBarHeightPercentage:
-                      UiUtils.appBarSmallerHeightPercentage),
-              onRefreshCallback: () {
-                fetchBehavior();
+      floatingActionButton: FloatingActionAddButton(onTap: () {
+        Navigator.of(context).pushNamed(Routes.addOrEditBehavior);
+      }),
+      body: Stack(
+        children: [
+          BehaviorContainer(
+            key: context.read<BehaviorScreen>().key,
+            studentId: context.read<BehaviorScreen>().studentId,
+            studentName: context.read<BehaviorScreen>().studentName,
+            teacherName: context.read<BehaviorScreen>().teacherName,
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: CustomAppBar(
+              title: UiUtils.getTranslatedLabel(context, behaviorKey),
+              subTitle: studentName,
+              showBackButton: true,
+              onPressBackButton: () {
+                Navigator.pop(context);
               },
-              child: ListView(
-                padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width *
-                        UiUtils.screenContentHorizontalPaddingPercentage,
-                    right: MediaQuery.of(context).size.width *
-                        UiUtils.screenContentHorizontalPaddingPercentage,
-                    top: UiUtils.getScrollViewTopPadding(
-                        context: context,
-                        appBarHeightPercentage:
-                            UiUtils.appBarSmallerHeightPercentage)),
-                children: [
-                  BehaviorContainer(
-                    key: context.read<BehaviorScreen>().key,
-                    studentId: context.read<BehaviorScreen>().studentId,
-                    studentName: context.read<BehaviorScreen>().studentName,
-                    teacherName: context.read<BehaviorScreen>().teacherName,
-                  )
-                ],
-              ),
             ),
-            _buildAppbar()
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
