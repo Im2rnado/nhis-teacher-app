@@ -15,10 +15,8 @@ import '../widgets/bottomSheetTextFiledContainer.dart';
 class AddOrEditBehaviorScreen extends StatefulWidget {
   final int? studentId;
   final String teacherName;
-  final Behavior? behavior;
 
-  AddOrEditBehaviorScreen(
-      {Key? key, this.studentId, this.behavior, required this.teacherName})
+  AddOrEditBehaviorScreen({Key? key, this.studentId, required this.teacherName})
       : super(key: key);
 
   static Route<bool?> route(RouteSettings routeSettings) {
@@ -35,7 +33,6 @@ class AddOrEditBehaviorScreen extends StatefulWidget {
               ],
               child: AddOrEditBehaviorScreen(
                 studentId: arguments['studentId'],
-                behavior: arguments['behavior'],
                 teacherName: arguments['teacherName'],
               ),
             ));
@@ -48,11 +45,9 @@ class AddOrEditBehaviorScreen extends StatefulWidget {
 
 class _AddOrEditBehaviorScreenState extends State<AddOrEditBehaviorScreen> {
   late TextEditingController _behaviorNameTextEditingController =
-      TextEditingController(
-          text: widget.behavior != null ? widget.behavior!.name : null);
+      TextEditingController(text: null);
   late TextEditingController _behaviorDescriptionTextEditingController =
-      TextEditingController(
-          text: widget.behavior != null ? widget.behavior!.description : null);
+      TextEditingController(text: null);
 
   @override
   void initState() {

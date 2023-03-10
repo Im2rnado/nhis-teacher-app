@@ -20,7 +20,7 @@ class ApiException implements Exception {
 class Api {
   static Map<String, dynamic> headers() {
     final String jwtToken = Hive.box(authBoxKey).get(jwtTokenKey) ?? "";
-print('Token is $jwtToken');
+    print('Token is $jwtToken');
     return {"Authorization": "Bearer $jwtToken"};
   }
 
@@ -67,9 +67,12 @@ print('Token is $jwtToken');
   static String examList = "${databaseUrl}teacher/get-exam-list";
   static String examTimeTable = "${databaseUrl}teacher/get-exam-details";
   static String examResults = "${databaseUrl}teacher/exam-marks";
-  static String submitExamMarksBySubjectId = "${databaseUrl}teacher/submit-exam-marks/subject";
-  static String submitExamMarksByStudentId = "${databaseUrl}teacher/submit-exam-marks/student";
-  static String getStudentResultList = "${databaseUrl}teacher/get-student-result";
+  static String submitExamMarksBySubjectId =
+      "${databaseUrl}teacher/submit-exam-marks/subject";
+  static String submitExamMarksByStudentId =
+      "${databaseUrl}teacher/submit-exam-marks/student";
+  static String getStudentResultList =
+      "${databaseUrl}teacher/get-student-result";
 
   static String getReviewAssignment =
       "${databaseUrl}teacher/get-assignment-submission";
@@ -77,8 +80,8 @@ print('Token is $jwtToken');
   static String updateReviewAssignmet =
       "${databaseUrl}teacher/update-assignment-submission";
 
-  static String getBehavior = "${databaseUrl}teacher/get-student-behavior";
-  static String createBehavior = "${databaseUrl}teacher/create-student-behavior";
+  static String getBehavior = "${databaseUrl}teacher/get-behavior";
+  static String createBehavior = "${databaseUrl}teacher/create-behavior";
 
   static String settings = "${databaseUrl}settings";
 
@@ -138,7 +141,7 @@ print('Token is $jwtToken');
       final response = await dio.get(url,
           queryParameters: queryParameters,
           options: useAuthToken ? Options(headers: headers()) : null);
-print('url is $url and query $queryParameters and $useAuthToken');
+      print('url is $url and query $queryParameters and $useAuthToken');
       if (response.data['error']) {
         print(response.data['error']);
         throw ApiException(response.data['code'].toString());
