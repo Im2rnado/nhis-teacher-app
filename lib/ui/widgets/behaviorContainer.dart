@@ -185,7 +185,7 @@ class _BehaviorContainerState extends State<BehaviorContainer> {
                   ),
                 );
               } else if (state is BehaviorFetchSuccess) {
-                ListView.builder(
+                return ListView.builder(
                   padding: EdgeInsets.only(
                       top: UiUtils.getScrollViewTopPadding(
                           context: context,
