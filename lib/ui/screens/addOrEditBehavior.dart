@@ -1,5 +1,4 @@
 import 'package:eschool_teacher/cubits/createBehaviorCubit.dart';
-import 'package:eschool_teacher/data/models/behavior.dart';
 import 'package:eschool_teacher/data/repositories/behaviorRepository.dart';
 import 'package:eschool_teacher/ui/widgets/customAppbar.dart';
 import 'package:eschool_teacher/ui/widgets/customCircularProgressIndicator.dart';
@@ -10,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../widgets/bottomSheetTextFiledContainer.dart';
+import 'package:eschool_teacher/ui/widgets/bottomSheetTextFiledContainer.dart';
 
 class AddOrEditBehaviorScreen extends StatefulWidget {
   final int? studentId;
@@ -183,22 +182,12 @@ class _AddOrEditBehaviorScreenState extends State<AddOrEditBehaviorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () {
-        if (context.read<CreateBehaviorCubit>().state
-            is CreateBehaviorInProgress) {
-          return Future.value(false);
-        }
-        Navigator.of(context).pop(false);
-        return Future.value(false);
-      },
-      child: Scaffold(
-          body: Stack(
-        children: [
-          _buildAddOrEditBehaviorForm(),
-          _buildAppbar(),
-        ],
-      )),
-    );
+    return Scaffold(
+        body: Stack(
+      children: [
+        _buildAddOrEditBehaviorForm(),
+        _buildAppbar(),
+      ],
+    ));
   }
 }

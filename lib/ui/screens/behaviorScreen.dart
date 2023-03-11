@@ -44,7 +44,8 @@ class BehaviorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionAddButton(onTap: () {
-        Navigator.of(context).pushNamed(Routes.addOrEditBehavior, arguments: {
+        Navigator.of(context)
+            .pushNamed<bool?>(Routes.addOrEditBehavior, arguments: {
           studentId: studentId,
           teacherName: teacherName,
         });
@@ -60,7 +61,7 @@ class BehaviorScreen extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: CustomAppBar(
               title: UiUtils.getTranslatedLabel(context, behaviorKey),
-              subTitle: "${studentName} - ${teacherName}",
+              subTitle: "${studentName}",
               showBackButton: true,
               onPressBackButton: () {
                 Navigator.pop(context);
