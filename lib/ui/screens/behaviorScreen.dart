@@ -60,7 +60,7 @@ class BehaviorScreen extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: CustomAppBar(
               title: UiUtils.getTranslatedLabel(context, behaviorKey),
-              subTitle: studentName,
+              subTitle: "${studentName} - ${teacherName}",
               showBackButton: true,
               onPressBackButton: () {
                 Navigator.pop(context);

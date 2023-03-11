@@ -11,7 +11,7 @@ class BehaviorFetchInProgress extends BehaviorState {}
 class BehaviorFetchSuccess extends BehaviorState {
   final List<Behavior> behavior;
 
-  BehaviorFetchSuccess(this.behavior);
+  BehaviorFetchSuccess({required this.behavior});
 }
 
 class BehaviorFetchFailure extends BehaviorState {
@@ -27,16 +27,15 @@ class BehaviorCubit extends Cubit<BehaviorState> {
 
   void fetchBehavior(
       {required int? studentId, required String? teacherName}) async {
-    emit(BehaviorFetchInProgress());
     try {
-      emit(BehaviorFetchSuccess(await _behaviorRepository.getBehavior(
-          studentId: studentId, teacherName: teacherName)));
+      print('calling');
+      emit(BehaviorFetchInProgress());
+      var result = await _behaviorRepository.getBehavior(
+          studentId: studentId, teacherName: teacherName);
+
+      emit(BehaviorFetchSuccess(behavior: result));
     } catch (e) {
       emit(BehaviorFetchFailure(e.toString()));
     }
-  }
-
-  void updateState(BehaviorState updatedState) {
-    emit(updatedState);
   }
 }
