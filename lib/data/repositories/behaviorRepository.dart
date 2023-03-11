@@ -24,7 +24,7 @@ class BehaviorRepository {
       {required int? studentId, required String? teacherName}) async {
     try {
       Map<String, dynamic> queryParameters = {
-        // 'student_id': studentId,
+        'student_id': studentId,
         'teacher_name': teacherName
       };
 
