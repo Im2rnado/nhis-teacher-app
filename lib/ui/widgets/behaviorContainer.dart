@@ -4,7 +4,6 @@ import 'package:eschool_teacher/data/repositories/behaviorRepository.dart';
 import 'package:eschool_teacher/ui/widgets/customRefreshIndicator.dart';
 import 'package:eschool_teacher/ui/widgets/customShimmerContainer.dart';
 import 'package:eschool_teacher/ui/widgets/errorContainer.dart';
-import 'package:eschool_teacher/ui/widgets/noDataContainer.dart';
 import 'package:eschool_teacher/ui/widgets/shimmerLoadingContainer.dart';
 import 'package:eschool_teacher/utils/labelKeys.dart';
 
@@ -47,6 +46,7 @@ class _BehaviorContainerState extends State<BehaviorContainer> {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(widget.teacherName!),
               ShimmerLoadingContainer(
                   child: CustomShimmerContainer(
                 height: 9,
@@ -90,12 +90,6 @@ class _BehaviorContainerState extends State<BehaviorContainer> {
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration.zero).then((value) => fetchBehavior());
   }
 
   Widget _buildBehaviorDetailsContainer(
@@ -160,6 +154,12 @@ class _BehaviorContainerState extends State<BehaviorContainer> {
         );
       }),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero).then((value) => fetchBehavior());
   }
 
   @override
