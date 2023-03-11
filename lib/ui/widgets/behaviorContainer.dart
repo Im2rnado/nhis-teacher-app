@@ -28,8 +28,8 @@ class BehaviorContainer extends StatefulWidget {
 class _BehaviorContainerState extends State<BehaviorContainer> {
   void fetchBehavior() {
     context.read<BehaviorCubit>().fetchBehavior(
-          studentId: widget.studentId,
-          teacherName: context.read<BehaviorContainer>().teacherName,
+          studentId: widget.studentId!,
+          teacherName: widget.teacherName!,
         );
   }
 
@@ -185,14 +185,19 @@ class _BehaviorContainerState extends State<BehaviorContainer> {
                   ),
                 );
               } else if (state is BehaviorFetchSuccess) {
-                return state.behavior.isEmpty
-                    ? NoDataContainer(titleKey: noBehaviorKey)
-                    : Column(
-                        children: state.behavior
-                            .map((behavior) => _buildBehaviorDetailsContainer(
-                                behavior: behavior, context: context))
-                            .toList(),
-                      );
+                ListView.builder(
+                  padding: EdgeInsets.only(
+                      top: UiUtils.getScrollViewTopPadding(
+                          context: context,
+                          appBarHeightPercentage:
+                              UiUtils.appBarSmallerHeightPercentage)),
+                  itemCount: state.behavior.length,
+                  itemBuilder: (context, index) {
+                    Behavior behaviorData = state.behavior[index];
+                    return _buildBehaviorDetailsContainer(
+                        behavior: behaviorData, context: context);
+                  },
+                );
               }
               return _buildBehaviorLoading();
             },
