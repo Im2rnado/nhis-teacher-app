@@ -369,8 +369,7 @@ class _StudentDetailsContainerState extends State<StudentDetailsContainer> {
       onTap: () {
         Navigator.pushNamed(context, Routes.behavior, arguments: {
           'studentId': widget.student.id,
-          'studentName':
-              '${widget.student.firstName} ${widget.student.lastName}',
+          'studentName': '${widget.student.firstName} ${widget.student.id}',
           'teacherName': teacher.getFullName()
         });
       },

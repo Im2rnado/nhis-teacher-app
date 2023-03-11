@@ -23,14 +23,17 @@ class BehaviorRepository {
   Future<List<Behavior>> getBehavior(
       {required int? studentId, required String? teacherName}) async {
     try {
+      Map<String, dynamic> queryParameters = {
+        'student_id': studentId,
+        'teacher_name': teacherName
+      };
+
       final result = await Api.get(
           url: Api.getBehavior,
           useAuthToken: true,
-          queryParameters: {
-            "teacher_name": teacherName,
-            "student_id": studentId
-          });
-      return (result['data'] as List)
+          queryParameters: queryParameters);
+
+      return ((result['data'] ?? []) as List)
           .map((behavior) => Behavior.fromJson(Map.from(behavior)))
           .toList();
     } catch (e) {

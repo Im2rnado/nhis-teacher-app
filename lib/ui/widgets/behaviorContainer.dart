@@ -122,7 +122,7 @@ class _BehaviorContainerState extends State<BehaviorContainer> {
                   SizedBox(
                     height: 2.5,
                   ),
-                  Text(behavior.name,
+                  Text(behavior.name ?? "",
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.w600,
@@ -142,7 +142,7 @@ class _BehaviorContainerState extends State<BehaviorContainer> {
                   SizedBox(
                     height: 2.5,
                   ),
-                  Text(behavior.description,
+                  Text(behavior.description ?? "",
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.w600,
