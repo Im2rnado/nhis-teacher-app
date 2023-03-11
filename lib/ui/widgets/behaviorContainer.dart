@@ -97,61 +97,56 @@ class _BehaviorContainerState extends State<BehaviorContainer> {
     return BlocProvider<BehaviorCubit>(
       create: (context) => BehaviorCubit(BehaviorRepository()),
       child: Builder(builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 20),
-          child: Opacity(
-            opacity: 1.0,
+        return Center(
             child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(children: [
-                    Text(UiUtils.getTranslatedLabel(context, behaviorTypeKey),
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.onBackground,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12.0),
-                        textAlign: TextAlign.left),
-                  ]),
-                  SizedBox(
-                    height: 2.5,
-                  ),
-                  Text(behavior.name ?? "",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14.0),
-                      textAlign: TextAlign.left),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                      UiUtils.getTranslatedLabel(
-                          context, behaviorDescriptionKey),
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onBackground,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.0),
-                      textAlign: TextAlign.left),
-                  SizedBox(
-                    height: 2.5,
-                  ),
-                  Text(behavior.description ?? "",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14.0),
-                      textAlign: TextAlign.left),
-                ],
+          margin: EdgeInsets.only(bottom: 30),
+          width: MediaQuery.of(context).size.width * (0.85),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(children: [
+                Text(UiUtils.getTranslatedLabel(context, behaviorTypeKey),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onBackground,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12.0),
+                    textAlign: TextAlign.left),
+              ]),
+              SizedBox(
+                height: 2.5,
               ),
-              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-              decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.background,
-                  borderRadius: BorderRadius.circular(10.0)),
-              width: MediaQuery.of(context).size.width * (0.85),
-            ),
+              Text(behavior.name ?? "",
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14.0),
+                  textAlign: TextAlign.left),
+              SizedBox(
+                height: 15,
+              ),
+              Text(UiUtils.getTranslatedLabel(context, behaviorDescriptionKey),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onBackground,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12.0),
+                  textAlign: TextAlign.left),
+              SizedBox(
+                height: 2.5,
+              ),
+              Text(behavior.description ?? "",
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14.0),
+                  textAlign: TextAlign.left),
+            ],
           ),
-        );
+          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+          decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.background,
+              borderRadius: BorderRadius.circular(10.0)),
+        ));
       }),
     );
   }
