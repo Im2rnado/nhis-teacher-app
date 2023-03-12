@@ -367,11 +367,11 @@ class _StudentDetailsContainerState extends State<StudentDetailsContainer> {
   _buildBehaviorContainer(Teacher teacher) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, Routes.behavior, arguments: {
+        Navigator.pushNamed(context, Routes.addOrEditBehavior, arguments: {
           'studentId': widget.student.id,
           'studentName':
               '${widget.student.firstName} ${widget.student.lastName}',
-          'teacherName': teacher.getFullName()
+          // 'teacherName': teacher.getFullName()
         });
       },
       child: Container(

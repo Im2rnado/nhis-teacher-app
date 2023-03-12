@@ -44,8 +44,7 @@ class BehaviorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionAddButton(onTap: () {
-        Navigator.of(context)
-            .pushNamed<bool?>(Routes.addOrEditBehavior, arguments: {
+        Navigator.pushNamed(Routes.addOrEditBehavior, arguments: {
           studentId: studentId,
           teacherName: teacherName,
         });
