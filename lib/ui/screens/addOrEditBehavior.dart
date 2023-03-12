@@ -11,16 +11,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:eschool_teacher/ui/widgets/bottomSheetTextFiledContainer.dart';
 
-class AddOrEditBehaviorScreen extends StatefulWidget {
+class AddOrEditBehaviorScreen extends StatelessWidget {
   final int? studentId;
   final String teacherName;
 
-  AddOrEditBehaviorScreen({Key? key, this.studentId, required this.teacherName})
+  const AddOrEditBehaviorScreen(
+      {Key? key, this.studentId, required this.teacherName})
       : super(key: key);
 
-  static Route<bool?> route(RouteSettings routeSettings) {
-    final arguments = (routeSettings.arguments ?? Map<String, dynamic>.from({}))
-        as Map<String, dynamic>;
+  static Route route(RouteSettings routeSettings) {
+    final arguments = routeSettings.arguments as Map<String, dynamic>;
 
     return CupertinoPageRoute(
         builder: (_) => MultiBlocProvider(
@@ -38,20 +38,46 @@ class AddOrEditBehaviorScreen extends StatefulWidget {
   }
 
   @override
-  State<AddOrEditBehaviorScreen> createState() =>
-      _AddOrEditBehaviorScreenState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          AddBehaviorContainer(
+            studentId: studentId,
+            teacherName: teacherName,
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: CustomAppBar(
+              title: UiUtils.getTranslatedLabel(context, addBehaviorKey),
+              showBackButton: true,
+              onPressBackButton: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
-class _AddOrEditBehaviorScreenState extends State<AddOrEditBehaviorScreen> {
+class AddBehaviorContainer extends StatefulWidget {
+  final int? studentId;
+  final String? teacherName;
+
+  const AddBehaviorContainer({Key? key, this.studentId, this.teacherName})
+      : super(key: key);
+
+  @override
+  State<AddBehaviorContainer> createState() => _AddBehaviorContainerState();
+}
+
+class _AddBehaviorContainerState extends State<AddBehaviorContainer> {
   late TextEditingController _behaviorNameTextEditingController =
       TextEditingController(text: null);
   late TextEditingController _behaviorDescriptionTextEditingController =
       TextEditingController(text: null);
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   void showErrorMessage(String errorMessageKey) {
     UiUtils.showBottomToastOverlay(
@@ -80,21 +106,6 @@ class _AddOrEditBehaviorScreenState extends State<AddOrEditBehaviorScreen> {
         behaviorDescription:
             _behaviorDescriptionTextEditingController.text.trim(),
         behaviorName: _behaviorNameTextEditingController.text.trim());
-  }
-
-  Widget _buildAppbar() {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: CustomAppBar(
-          onPressBackButton: () {
-            if (context.read<CreateBehaviorCubit>().state
-                is CreateBehaviorInProgress) {
-              return;
-            }
-            Navigator.of(context).pop(false);
-          },
-          title: UiUtils.getTranslatedLabel(context, addBehaviorKey)),
-    );
   }
 
   Widget _buildAddOrEditBehaviorForm() {
@@ -181,13 +192,15 @@ class _AddOrEditBehaviorScreenState extends State<AddOrEditBehaviorScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Stack(
-      children: [
-        _buildAddOrEditBehaviorForm(),
-        _buildAppbar(),
-      ],
-    ));
+    return Align(
+      alignment: Alignment.topCenter,
+      child: _buildAddOrEditBehaviorForm(),
+    );
   }
 }
