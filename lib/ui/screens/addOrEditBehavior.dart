@@ -101,8 +101,8 @@ class _AddBehaviorContainerState extends State<AddBehaviorContainer> {
     }
 
     context.read<CreateBehaviorCubit>().createBehavior(
-        studentId: context.read<AddOrEditBehaviorScreen>().studentId,
-        teacherName: context.read<AddOrEditBehaviorScreen>().teacherName,
+        studentId: widget.studentId!,
+        teacherName: widget.teacherName!,
         behaviorDescription:
             _behaviorDescriptionTextEditingController.text.trim(),
         behaviorName: _behaviorNameTextEditingController.text.trim());
@@ -198,9 +198,22 @@ class _AddBehaviorContainerState extends State<AddBehaviorContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: _buildAddOrEditBehaviorForm(),
+    return Scaffold(
+      body: Stack(
+        children: [
+          _buildAddOrEditBehaviorForm(),
+          Align(
+            alignment: Alignment.topCenter,
+            child: CustomAppBar(
+              title: UiUtils.getTranslatedLabel(context, addBehaviorKey),
+              showBackButton: true,
+              onPressBackButton: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
